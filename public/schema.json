@@ -9,12 +9,7 @@
       "url": "https://www.chillipharm.com"
     }
   },
-  "tags": [
-    {
-      "name": "Example",
-      "description": "Example endpoints"
-    }
-  ],
+  "tags": [],
   "servers": [
     {
       "url": "http://chillipharm.test:3000/api/v1",
@@ -26,9 +21,10 @@
     }
   ],
   "paths": {
-    "/example": {
+    "/session": {
       "get": {
-        "summary": "Example endpoint",
+        "summary": "Get active status of current user session",
+        "description": "Get active status of current user session",
         "security": [
           {
             "userSessionKey": []
@@ -37,29 +33,14 @@
             "chillipharmSession": []
           }
         ],
-        "operationId": "getExample",
-        "description": "This is an example endpoint",
-        "parameters": [
-          {
-            "name": "example",
-            "in": "query",
-            "description": "Example parameter",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "tags": [
-          "Example"
-        ],
+        "operationId": "getSession",
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ExampleResponse"
+                  "$ref": "#/components/schemas/Active"
                 }
               }
             }
@@ -96,11 +77,13 @@
       }
     },
     "schemas": {
-      "ExampleResponse": {
+      "Active": {
         "type": "object",
         "properties": {
-          "example": {
-            "type": "string"
+          "message": {
+            "type": "string",
+            "description": "The active status of the current user session",
+            "example": "User session is active"
           }
         }
       },
