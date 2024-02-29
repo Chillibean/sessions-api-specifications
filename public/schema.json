@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "0.0.0",
+    "version": "1.0.0",
     "title": "Sessions API",
     "description": "This API is used to generate sessions",
     "contact": {
@@ -50,7 +50,9 @@
             }
           }
         ],
-        "tags": ["Example"],
+        "tags": [
+          "Example"
+        ],
         "responses": {
           "200": {
             "description": "OK",
