@@ -84,6 +84,11 @@
             "type": "string",
             "description": "The active status of the current user session",
             "example": "User session is active"
+          },
+          "minutes_remaining": {
+            "type": "integer",
+            "description": "The minutes remaining in seconds for the current user session",
+            "example": 12
           }
         }
       },
