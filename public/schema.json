@@ -58,6 +58,43 @@
             "$ref": "#/components/responses/InternalServerError"
           }
         }
+      },
+      "delete": {
+        "summary": "End current user session",
+        "description": "End current user session",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "operationId": "deleteSession",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EndSession"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
       }
     }
   },
@@ -89,6 +126,16 @@
             "type": "integer",
             "description": "The minutes remaining in seconds for the current user session",
             "example": 12
+          }
+        }
+      },
+      "EndSession": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "User signed out confirmation",
+            "example": "User signed out"
           }
         }
       },
