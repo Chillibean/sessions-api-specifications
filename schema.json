@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "0.0.0",
+    "version": "1.0.0",
     "title": "Sessions API",
     "description": "This API is used to generate sessions",
     "contact": {
@@ -9,12 +9,7 @@
       "url": "https://www.chillipharm.com"
     }
   },
-  "tags": [
-    {
-      "name": "Example",
-      "description": "Example endpoints"
-    }
-  ],
+  "tags": [],
   "servers": [
     {
       "url": "http://chillipharm.test:3000/api/v1",
@@ -26,9 +21,11 @@
     }
   ],
   "paths": {
-    "/example": {
+    "/session": {
       "get": {
-        "summary": "Example endpoint",
+        "summary": "Get active status of current user session",
+        "description": "Get active status of current user session",
+        "operationId": "getSession",
         "security": [
           {
             "userSessionKey": []
@@ -37,39 +34,44 @@
             "chillipharmSession": []
           }
         ],
-        "operationId": "getExample",
-        "description": "This is an example endpoint",
-        "parameters": [
-          {
-            "name": "example",
-            "in": "query",
-            "description": "Example parameter",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "tags": ["Example"],
         "responses": {
           "200": {
             "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ExampleResponse"
+                  "$ref": "#/components/schemas/Active"
                 }
               }
             }
           },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "End current user session",
+        "description": "End current user session",
+        "operationId": "deleteSession",
+        "security": [
+          {
+            "userSessionKey": []
           },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserStatus"
+                }
+              }
+            }
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
@@ -94,13 +96,37 @@
       }
     },
     "schemas": {
-      "ExampleResponse": {
+      "Active": {
         "type": "object",
         "properties": {
-          "example": {
-            "type": "string"
+          "active": {
+            "type": "boolean",
+            "description": "The active status of the current user session",
+            "example": true
+          },
+          "minutes_remaining": {
+            "type": "integer",
+            "description": "The minutes remaining in seconds for the current user session",
+            "example": 12
           }
-        }
+        },
+        "required": ["active"]
+      },
+      "UserStatus": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The active status of the current user session",
+            "example": "User session is active"
+          },
+          "minutes_remaining": {
+            "type": "integer",
+            "description": "The minutes remaining in seconds for the current user session",
+            "example": 12
+          }
+        },
+        "required": ["message"]
       },
       "Error": {
         "description": "An error",
@@ -127,16 +153,6 @@
       },
       "Unauthorized": {
         "description": "Unauthorized. Missing or invalid authentication credentials.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "Conflict": {
-        "description": "Conflict. The request could not be completed due to a conflict with the current state of the resource.",
         "content": {
           "application/json": {
             "schema": {
