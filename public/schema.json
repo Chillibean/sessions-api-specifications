@@ -25,6 +25,7 @@
       "get": {
         "summary": "Get active status of current user session",
         "description": "Get active status of current user session",
+        "operationId": "getSession",
         "security": [
           {
             "userSessionKey": []
@@ -33,7 +34,6 @@
             "chillipharmSession": []
           }
         ],
-        "operationId": "getSession",
         "responses": {
           "200": {
             "description": "OK",
@@ -45,15 +45,6 @@
               }
             }
           },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
-          },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
           }
@@ -62,6 +53,7 @@
       "delete": {
         "summary": "End current user session",
         "description": "End current user session",
+        "operationId": "deleteSession",
         "security": [
           {
             "userSessionKey": []
@@ -70,7 +62,6 @@
             "chillipharmSession": []
           }
         ],
-        "operationId": "deleteSession",
         "responses": {
           "200": {
             "description": "OK",
@@ -81,15 +72,6 @@
                 }
               }
             }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "409": {
-            "$ref": "#/components/responses/Conflict"
           },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
@@ -171,16 +153,6 @@
       },
       "Unauthorized": {
         "description": "Unauthorized. Missing or invalid authentication credentials.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "Conflict": {
-        "description": "Conflict. The request could not be completed due to a conflict with the current state of the resource.",
         "content": {
           "application/json": {
             "schema": {
