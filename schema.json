@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "title": "Sessions API",
     "description": "This API is used to generate sessions",
     "contact": {
@@ -73,6 +73,12 @@
               }
             }
           },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/BadRequest"
+          },
           "500": {
             "$ref": "#/components/responses/InternalServerError"
           }
@@ -110,7 +116,9 @@
             "example": 12
           }
         },
-        "required": ["active"]
+        "required": [
+          "active"
+        ]
       },
       "UserStatus": {
         "type": "object",
@@ -126,7 +134,9 @@
             "example": 12
           }
         },
-        "required": ["message"]
+        "required": [
+          "message"
+        ]
       },
       "Error": {
         "description": "An error",
