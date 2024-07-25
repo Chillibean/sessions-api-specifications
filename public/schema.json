@@ -22,68 +22,7 @@
   ],
   "paths": {
     "/session": {
-      "get": {
-        "summary": "Get active status of current user session",
-        "description": "Get active status of current user session",
-        "operationId": "getSession",
-        "security": [
-          {
-            "userSessionKey": []
-          },
-          {
-            "chillipharmSession": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Active"
-                }
-              }
-            }
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      },
-      "delete": {
-        "summary": "End current user session",
-        "description": "End current user session",
-        "operationId": "deleteSession",
-        "security": [
-          {
-            "userSessionKey": []
-          },
-          {
-            "chillipharmSession": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/UserStatus"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "500": {
-            "$ref": "#/components/responses/InternalServerError"
-          }
-        }
-      }
+      "$ref": "refs/paths/session.json"
     }
   },
   "components": {
@@ -103,83 +42,13 @@
     },
     "schemas": {
       "Active": {
-        "type": "object",
-        "properties": {
-          "active": {
-            "type": "boolean",
-            "description": "The active status of the current user session",
-            "example": true
-          },
-          "minutes_remaining": {
-            "type": "integer",
-            "description": "The minutes remaining in seconds for the current user session",
-            "example": 12
-          }
-        },
-        "required": [
-          "active"
-        ]
-      },
-      "UserStatus": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "The active status of the current user session",
-            "example": "User session is active"
-          },
-          "minutes_remaining": {
-            "type": "integer",
-            "description": "The minutes remaining in seconds for the current user session",
-            "example": 12
-          }
-        },
-        "required": [
-          "message"
-        ]
+        "$ref": "refs/components/schemas/Active.json"
       },
       "Error": {
-        "description": "An error",
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "The error message",
-            "example": "Bad request. Missing or invalid input parameters."
-          }
-        }
-      }
-    },
-    "responses": {
-      "BadRequest": {
-        "description": "Bad request. Missing or invalid input parameters.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
+        "$ref": "refs/components/schemas/Error.json"
       },
-      "Unauthorized": {
-        "description": "Unauthorized. Missing or invalid authentication credentials.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
-      },
-      "InternalServerError": {
-        "description": "Internal server error. Please contact support.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/Error"
-            }
-          }
-        }
+      "UserStatus": {
+        "$ref": "refs/components/schemas/UserStatus.json"
       }
     }
   }

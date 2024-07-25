@@ -1,0 +1,192 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.3",
+    "title": "Sessions API",
+    "description": "This API is used to generate sessions",
+    "contact": {
+      "name": "ChilliPharm",
+      "url": "https://www.chillipharm.com"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://chillipharm.test:3000/api/v1",
+      "description": "Local development"
+    },
+    {
+      "url": "https://www.chillipharm.com/api/v1",
+      "description": "Production"
+    }
+  ],
+  "tags": [],
+  "paths": {
+    "/session": {
+      "get": {
+        "summary": "Get active status of current user session",
+        "description": "Get active status of current user session",
+        "operationId": "getSession",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Active"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "End current user session",
+        "description": "End current user session",
+        "operationId": "deleteSession",
+        "security": [
+          {
+            "userSessionKey": []
+          },
+          {
+            "chillipharmSession": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserStatus"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalServerError"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "userSessionKey": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "user_session_key",
+        "description": "User session key cookie"
+      },
+      "chillipharmSession": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "_chillipharm_session",
+        "description": "ChilliPharm session cookie"
+      }
+    },
+    "schemas": {
+      "Active": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean",
+            "description": "The active status of the current user session",
+            "example": true
+          },
+          "minutes_remaining": {
+            "type": "integer",
+            "description": "The minutes remaining in seconds for the current user session",
+            "example": 12
+          }
+        },
+        "required": [
+          "active"
+        ]
+      },
+      "Error": {
+        "description": "An error",
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The error message",
+            "example": "Bad request. Missing or invalid input parameters."
+          }
+        }
+      },
+      "UserStatus": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "description": "The active status of the current user session",
+            "example": "User session is active"
+          },
+          "minutes_remaining": {
+            "type": "integer",
+            "description": "The minutes remaining in seconds for the current user session",
+            "example": 12
+          }
+        },
+        "required": [
+          "message"
+        ]
+      }
+    },
+    "responses": {
+      "Unauthorized": {
+        "description": "Unauthorized. Missing or invalid authentication credentials.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "BadRequest": {
+        "description": "Bad request. Missing or invalid input parameters.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      },
+      "InternalServerError": {
+        "description": "Internal server error. Please contact support.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            }
+          }
+        }
+      }
+    }
+  }
+}
