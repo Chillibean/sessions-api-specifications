@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "active": {
+      "type": "boolean",
+      "description": "The active status of the current user session",
+      "example": true
+    },
+    "minutes_remaining": {
+      "type": "integer",
+      "description": "The minutes remaining in seconds for the current user session",
+      "example": 12
+    }
+  },
+  "required": [
+    "active"
+  ]
+}
