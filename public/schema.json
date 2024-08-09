@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.0.3",
+    "version": "2.1.0",
     "title": "Sessions API",
     "description": "This API is used to generate sessions",
     "contact": {
@@ -9,7 +9,20 @@
       "url": "https://www.chillipharm.com"
     }
   },
-  "tags": [],
+  "tags": [
+    {
+      "name": "Sessions",
+      "description": "Operations related to sessions"
+    },
+    {
+      "name": "Users",
+      "description": "Operations related to users"
+    },
+    {
+      "name": "Logs",
+      "description": "Operations related to logs"
+    }
+  ],
   "servers": [
     {
       "url": "http://chillipharm.test:3000/api/v1",
@@ -23,6 +36,12 @@
   "paths": {
     "/session": {
       "$ref": "refs/paths/session.json"
+    },
+    "/logs/heartbeat": {
+      "$ref": "refs/paths/logs_heartbeat.json"
+    },
+    "/users/me": {
+      "$ref": "refs/paths/users_me.json"
     }
   },
   "components": {
@@ -46,6 +65,9 @@
       },
       "Error": {
         "$ref": "refs/components/schemas/Error.json"
+      },
+      "User": {
+        "$ref": "refs/components/schemas/User.json"
       },
       "UserStatus": {
         "$ref": "refs/components/schemas/UserStatus.json"

@@ -1,0 +1,56 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "The user ID",
+      "example": 123
+    },
+    "email": {
+      "type": "string",
+      "description": "The user's email address",
+      "example": "test@gmail.com"
+    },
+    "uuid": {
+      "type": "string",
+      "description": "The user's UUID",
+      "example": "valid_token"
+    },
+    "first_name": {
+      "type": "string",
+      "description": "The user's first name",
+      "example": "John"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "The user's last name",
+      "example": "Doe"
+    },
+    "authenticity_token": {
+      "type": "string",
+      "description": "The user's authenticity token",
+      "example": "valid_token"
+    },
+    "permissions": {
+      "type": "object",
+      "properties": {
+        "staff": {
+          "type": "boolean",
+          "description": "Whether the user is a staff member",
+          "example": true
+        },
+        "super_user": {
+          "type": "boolean",
+          "description": "Whether the user is a super user",
+          "example": false
+        },
+        "video_services_user": {
+          "type": "boolean",
+          "description": "Whether the user is a video services user",
+          "example": false
+        }
+      }
+    }
+  }
+}
