@@ -1,0 +1,52 @@
+{
+  "post": {
+    "summary": "Logs the heartbeat for a logged in user",
+    "description": "Logs the heartbeat for a logged in user to verify the session is still active",
+    "tags": ["Logs"],
+    "operationId": "createHeartbeat",
+    "security": [
+      {
+        "userSessionKey": []
+      },
+      {
+        "chillipharmSession": []
+      }
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "authenticity_token": {
+                "type": "string",
+                "description": "The authenticity token of the current user session",
+                "example": "valid_token"
+              },
+              "log_type": {
+                "type": "string",
+                "description": "The type of log",
+                "example": "watching video"
+              }
+            },
+            "required": ["authenticity_token", "log_type"]
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "OK"
+      },
+      "401": {
+        "$ref": "../components/responses/Unauthorized.json"
+      },
+      "404": {
+        "$ref": "../components/responses/BadRequest.json"
+      },
+      "500": {
+        "$ref": "../components/responses/InternalServerError.json"
+      }
+    }
+  }
+}

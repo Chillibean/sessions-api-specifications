@@ -2,6 +2,7 @@
   "get": {
     "summary": "Get active status of current user session",
     "description": "Get active status of current user session",
+    "tags": ["Sessions"],
     "operationId": "getSession",
     "security": [
       {
@@ -36,6 +37,7 @@
   "delete": {
     "summary": "End current user session",
     "description": "End current user session",
+    "tags": ["Sessions"],
     "operationId": "deleteSession",
     "security": [
       {
