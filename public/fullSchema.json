@@ -157,9 +157,8 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "string",
-                  "description": "Empty response body",
-                  "example": ""
+                  "type": "object",
+                  "properties": {}
                 }
               }
             }
