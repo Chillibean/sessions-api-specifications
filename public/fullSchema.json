@@ -314,7 +314,16 @@
               }
             }
           }
-        }
+        },
+        "required": [
+          "id",
+          "email",
+          "uuid",
+          "first_name",
+          "last_name",
+          "authenticity_token",
+          "permissions"
+        ]
       },
       "UserStatus": {
         "type": "object",
