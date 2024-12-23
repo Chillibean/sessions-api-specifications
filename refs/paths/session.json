@@ -2,7 +2,9 @@
   "get": {
     "summary": "Get active status of current user session",
     "description": "Get active status of current user session",
-    "tags": ["Sessions"],
+    "tags": [
+      "Sessions"
+    ],
     "operationId": "getSession",
     "security": [
       {
@@ -37,7 +39,9 @@
   "delete": {
     "summary": "End current user session",
     "description": "End current user session",
-    "tags": ["Sessions"],
+    "tags": [
+      "Sessions"
+    ],
     "operationId": "deleteSession",
     "security": [
       {
@@ -47,6 +51,25 @@
         "chillipharmSession": []
       }
     ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "authenticity_token": {
+                "type": "string",
+                "description": "The authenticity token of the current user session",
+                "example": "valid_token"
+              }
+            },
+            "required": [
+              "authenticity_token"
+            ]
+          }
+        }
+      }
+    },
     "responses": {
       "200": {
         "description": "OK",

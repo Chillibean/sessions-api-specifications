@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.1.0",
+    "version": "2.1.1",
     "title": "Sessions API",
     "description": "This API is used to generate sessions",
     "contact": {
@@ -87,6 +87,25 @@
             "chillipharmSession": []
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "authenticity_token": {
+                    "type": "string",
+                    "description": "The authenticity token of the current user session",
+                    "example": "valid_token"
+                  }
+                },
+                "required": [
+                  "authenticity_token"
+                ]
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
