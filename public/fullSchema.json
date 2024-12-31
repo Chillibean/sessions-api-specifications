@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.1.4",
+    "version": "2.1.5",
     "title": "Sessions API",
-    "description": "This API is used to generate sessions",
+    "description": "This API is used to things related to sessions",
     "contact": {
       "name": "ChilliPharm",
       "url": "https://www.chillipharm.com"
@@ -13,6 +13,18 @@
     {
       "url": "http://chillipharm.test:3000/api/v1",
       "description": "Local development"
+    },
+    {
+      "url": "https://qa.chillipharm.dev/api/v1",
+      "description": "QA"
+    },
+    {
+      "url": "https://chillipharm-staging.com/api/v1",
+      "description": "Staging"
+    },
+    {
+      "url": "https://chillipharm-uat.com/api/v1",
+      "description": "UAT"
     },
     {
       "url": "https://www.chillipharm.com/api/v1",
@@ -38,15 +50,13 @@
       "get": {
         "summary": "Get active status of current user session",
         "description": "Get active status of current user session",
+        "operationId": "getSession",
         "tags": [
           "Sessions"
         ],
-        "operationId": "getSession",
         "security": [
           {
-            "userSessionKey": []
-          },
-          {
+            "userSessionKey": [],
             "chillipharmSession": []
           }
         ],
@@ -75,15 +85,13 @@
       "delete": {
         "summary": "End current user session",
         "description": "End current user session",
+        "operationId": "deleteSession",
         "tags": [
           "Sessions"
         ],
-        "operationId": "deleteSession",
         "security": [
           {
-            "userSessionKey": []
-          },
-          {
+            "userSessionKey": [],
             "chillipharmSession": []
           }
         ],
@@ -94,14 +102,13 @@
                 "type": "object",
                 "properties": {
                   "authenticity_token": {
-                    "type": "string",
-                    "description": "The authenticity token of the current user session",
-                    "example": "valid_token"
+                    "$ref": "#/components/schemas/AuthenticityToken"
                   }
                 },
                 "required": [
                   "authenticity_token"
-                ]
+                ],
+                "additionalProperties": false
               }
             }
           }
@@ -133,15 +140,13 @@
       "post": {
         "summary": "Logs the heartbeat for a logged in user",
         "description": "Logs the heartbeat for a logged in user to verify the session is still active",
+        "operationId": "createHeartbeat",
         "tags": [
           "Logs"
         ],
-        "operationId": "createHeartbeat",
         "security": [
           {
-            "userSessionKey": []
-          },
-          {
+            "userSessionKey": [],
             "chillipharmSession": []
           }
         ],
@@ -152,9 +157,7 @@
                 "type": "object",
                 "properties": {
                   "authenticity_token": {
-                    "type": "string",
-                    "description": "The authenticity token of the current user session",
-                    "example": "valid_token"
+                    "$ref": "#/components/schemas/AuthenticityToken"
                   },
                   "log_type": {
                     "type": "string",
@@ -165,7 +168,8 @@
                 "required": [
                   "authenticity_token",
                   "log_type"
-                ]
+                ],
+                "additionalProperties": false
               }
             }
           }
@@ -198,21 +202,19 @@
       "get": {
         "summary": "Get current user",
         "description": "Get current user",
+        "operationId": "getCurrentUser",
         "tags": [
           "Users"
         ],
-        "operationId": "getUsersMe",
         "security": [
           {
-            "userSessionKey": []
-          },
-          {
+            "userSessionKey": [],
             "chillipharmSession": []
           }
         ],
         "responses": {
           "200": {
-            "description": "Successful operation",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -267,6 +269,11 @@
         "required": [
           "active"
         ]
+      },
+      "AuthenticityToken": {
+        "description": "The authenticity token",
+        "type": "string",
+        "example": "valid_token"
       },
       "Error": {
         "description": "An error",

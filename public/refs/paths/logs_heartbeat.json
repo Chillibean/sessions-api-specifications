@@ -2,13 +2,13 @@
   "post": {
     "summary": "Logs the heartbeat for a logged in user",
     "description": "Logs the heartbeat for a logged in user to verify the session is still active",
-    "tags": ["Logs"],
     "operationId": "createHeartbeat",
+    "tags": [
+      "Logs"
+    ],
     "security": [
       {
-        "userSessionKey": []
-      },
-      {
+        "userSessionKey": [],
         "chillipharmSession": []
       }
     ],
@@ -19,9 +19,7 @@
             "type": "object",
             "properties": {
               "authenticity_token": {
-                "type": "string",
-                "description": "The authenticity token of the current user session",
-                "example": "valid_token"
+                "$ref": "../components/schemas/AuthenticityToken.json"
               },
               "log_type": {
                 "type": "string",
@@ -29,7 +27,11 @@
                 "example": "watching video"
               }
             },
-            "required": ["authenticity_token", "log_type"]
+            "required": [
+              "authenticity_token",
+              "log_type"
+            ],
+            "additionalProperties": false
           }
         }
       }
