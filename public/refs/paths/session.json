@@ -2,15 +2,13 @@
   "get": {
     "summary": "Get active status of current user session",
     "description": "Get active status of current user session",
+    "operationId": "getSession",
     "tags": [
       "Sessions"
     ],
-    "operationId": "getSession",
     "security": [
       {
-        "userSessionKey": []
-      },
-      {
+        "userSessionKey": [],
         "chillipharmSession": []
       }
     ],
@@ -39,15 +37,13 @@
   "delete": {
     "summary": "End current user session",
     "description": "End current user session",
+    "operationId": "deleteSession",
     "tags": [
       "Sessions"
     ],
-    "operationId": "deleteSession",
     "security": [
       {
-        "userSessionKey": []
-      },
-      {
+        "userSessionKey": [],
         "chillipharmSession": []
       }
     ],
@@ -58,14 +54,13 @@
             "type": "object",
             "properties": {
               "authenticity_token": {
-                "type": "string",
-                "description": "The authenticity token of the current user session",
-                "example": "valid_token"
+                "$ref": "../components/schemas/AuthenticityToken.json"
               }
             },
             "required": [
               "authenticity_token"
-            ]
+            ],
+            "additionalProperties": false
           }
         }
       }
