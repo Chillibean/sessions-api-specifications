@@ -2,19 +2,19 @@
   "get": {
     "summary": "Get current user",
     "description": "Get current user",
-    "tags": ["Users"],
-    "operationId": "getUsersMe",
+    "operationId": "getCurrentUser",
+    "tags": [
+      "Users"
+    ],
     "security": [
       {
-        "userSessionKey": []
-      },
-      {
+        "userSessionKey": [],
         "chillipharmSession": []
       }
     ],
     "responses": {
       "200": {
-        "description": "Successful operation",
+        "description": "OK",
         "content": {
           "application/json": {
             "schema": {
