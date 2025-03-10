@@ -1,9 +1,9 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "2.1.4",
+    "version": "3.0.0",
     "title": "Sessions API",
-    "description": "This API is used to generate sessions",
+    "description": "This API is used to things related to sessions",
     "contact": {
       "name": "ChilliPharm",
       "url": "https://www.chillipharm.com"
@@ -27,6 +27,18 @@
     {
       "url": "http://chillipharm.test:3000/api/v1",
       "description": "Local development"
+    },
+    {
+      "url": "https://qa.chillipharm.dev/api/v1",
+      "description": "QA"
+    },
+    {
+      "url": "https://chillipharm-staging.com/api/v1",
+      "description": "Staging"
+    },
+    {
+      "url": "https://chillipharm-uat.com/api/v1",
+      "description": "UAT"
     },
     {
       "url": "https://www.chillipharm.com/api/v1",
@@ -62,6 +74,9 @@
     "schemas": {
       "Active": {
         "$ref": "refs/components/schemas/Active.json"
+      },
+      "AuthenticityToken": {
+        "$ref": "refs/components/schemas/AuthenticityToken.json"
       },
       "Error": {
         "$ref": "refs/components/schemas/Error.json"
