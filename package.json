@@ -1,7 +1,7 @@
 {
   "name": "@chillibean/sessions-api-specifications",
   "private": true,
-  "version": "3.0.5",
+  "version": "3.1.0",
   "type": "module",
   "engines": {
     "node": ">=22"
