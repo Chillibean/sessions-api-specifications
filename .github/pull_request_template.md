@@ -1,19 +1,64 @@
-# Version
+<!-- markdownlint-disable MD033 -->
 
-- 
+## 📝 Description
 
-# Ticket URL
+<!-- Brief summary of changes and what problem this solves -->
 
-- 
+**Resolves:** #issue-number
 
-# Changes Made
+---
 
-- 
+## Type of Change
 
-# Checklist
+- [ ] Bug fix
+- [ ] New feature
+- [ ] Breaking change
+- [ ] Refactor
+- [ ] Documentation
+- [ ] Tooling/Scripts
+- [ ] CI/CD/Workflow update
 
-Please verify this checklist so that you are sure this is ready for review.
+---
 
-- [ ] Updated `package.json` & `schema.json` versions - they need to be the same
-- [ ] Verify there are no issues with the schema.json by running `npm run verify`
-- [ ] All objects have a properites list, `required` array and `additionalProperties` set to `false`
+## Changes
+
+**What changed:**
+<!-- List key changes - files, features, behavior, etc. -->
+-
+-
+-
+
+---
+
+## Impact
+
+**Breaking changes:**
+
+- [ ] ✅ No breaking changes
+- [ ] ⚠️ Yes - breaking changes (explain below)
+
+<!-- If breaking, describe the impact -->
+
+---
+
+## Testing
+
+- [ ] Tested locally
+- [ ] Existing tests pass
+- [ ] New tests added (if applicable)
+- [ ] Documentation updated
+
+---
+
+## Post-Merge Steps
+
+<!-- Any manual steps needed after merge -->
+
+-
+-
+
+---
+
+## Notes
+
+<!-- Additional context, dependencies, or areas for reviewers to focus on -->
