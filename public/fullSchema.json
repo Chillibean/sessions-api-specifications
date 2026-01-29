@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "version": "3.2.0",
+    "version": "3.3.0",
     "title": "Sessions API",
     "description": "This API is used to things related to sessions",
     "contact": {
@@ -119,7 +119,23 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UserStatus"
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "The active status of the current user session",
+                      "example": "User session is active"
+                    },
+                    "logout_url": {
+                      "type": "string",
+                      "description": "The URL to log out the current user session",
+                      "example": "https://dummy.auth0.com/v2/logout"
+                    }
+                  },
+                  "required": [
+                    "message",
+                    "logout_url"
+                  ]
                 }
               }
             }
@@ -349,24 +365,6 @@
           "last_name",
           "authenticity_token",
           "permissions"
-        ]
-      },
-      "UserStatus": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "description": "The active status of the current user session",
-            "example": "User session is active"
-          },
-          "minutes_remaining": {
-            "type": "integer",
-            "description": "The minutes remaining in seconds for the current user session",
-            "example": 12
-          }
-        },
-        "required": [
-          "message"
         ]
       }
     },
