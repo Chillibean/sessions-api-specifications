@@ -71,19 +71,35 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../components/schemas/UserStatus.json"
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "The active status of the current user session",
+                  "example": "User session is active"
+                },
+                "logout_url": {
+                  "type": "string",
+                  "description": "The URL to log out the current user session",
+                  "example": "https://dummy.auth0.com/v2/logout"
+                }
+              },
+              "required": [
+                "message",
+                "logout_url"
+              ]
             }
           }
+        },
+        "401": {
+          "$ref": "../components/responses/Unauthorized.json"
+        },
+        "404": {
+          "$ref": "../components/responses/BadRequest.json"
+        },
+        "500": {
+          "$ref": "../components/responses/InternalServerError.json"
         }
-      },
-      "401": {
-        "$ref": "../components/responses/Unauthorized.json"
-      },
-      "404": {
-        "$ref": "../components/responses/BadRequest.json"
-      },
-      "500": {
-        "$ref": "../components/responses/InternalServerError.json"
       }
     }
   }
