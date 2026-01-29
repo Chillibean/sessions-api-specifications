@@ -71,7 +71,23 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../components/schemas/UserStatus.json"
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "description": "The active status of the current user session",
+                  "example": "User session is active"
+                },
+                "logout_url": {
+                  "type": "string",
+                  "description": "The URL to log out the current user session",
+                  "example": "https://dummy.auth0.com/v2/logout"
+                }
+              },
+              "required": [
+                "message",
+                "logout_url"
+              ]
             }
           }
         }
