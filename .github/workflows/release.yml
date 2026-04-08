@@ -140,7 +140,7 @@ jobs:
       - name: Trigger Workflow
         run: |
           set -e
-          curl -X POST https://api.github.com/repos/Chillibean/manage-api-client-sdk/dispatches \
+          curl -X POST https://api.github.com/repos/Chillibean/sessions-api-client-sdk/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
           --data '{"event_type": "trigger-release", "client_payload": { "version": "${{ needs.create-release.outputs.version }}" }}' \
@@ -210,25 +210,25 @@ jobs:
         uses: actions/checkout@v4
       - name: Publish to Swagger Hub
         run: |
-          curl -X POST "https://api.swaggerhub.com/apis/chillibean/manage-api" \
+          curl -X POST "https://api.swaggerhub.com/apis/chillibean/sessions-api" \
           -H "Authorization: ${{ secrets.SWAGGER_API_KEY }}" \
           -H "Content-Type: application/json" \
           --data-binary "@./public/fullSchema.json"
       - name: Make API Private
         run: |
-          curl -X PUT "https://api.swaggerhub.com/apis/chillibean/manage-api/${{ needs.create-release.outputs.version }}/settings/private" \
+          curl -X PUT "https://api.swaggerhub.com/apis/chillibean/sessions-api/${{ needs.create-release.outputs.version }}/settings/private" \
           -H "Authorization: ${{ secrets.SWAGGER_API_KEY }}" \
           -H "Content-Type: application/json" \
           -d '{"private": true}'
       - name: Publish API
         run: |
-          curl -X PUT "https://api.swaggerhub.com/apis/chillibean/manage-api/${{ needs.create-release.outputs.version }}/settings/lifecycle" \
+          curl -X PUT "https://api.swaggerhub.com/apis/chillibean/sessions-api/${{ needs.create-release.outputs.version }}/settings/lifecycle" \
           -H "Authorization: ${{ secrets.SWAGGER_API_KEY }}" \
           -H "Content-Type: application/json" \
           -d '{"published": true}'
       - name: Set Default Version
         run: |
-          curl -X PUT "https://api.swaggerhub.com/apis/chillibean/manage-api/settings/default" \
+          curl -X PUT "https://api.swaggerhub.com/apis/chillibean/sessions-api/settings/default" \
           -H "Authorization: ${{ secrets.SWAGGER_API_KEY }}" \
           -H "Content-Type: application/json" \
           -d '{"version": "${{ needs.create-release.outputs.version }}" }'

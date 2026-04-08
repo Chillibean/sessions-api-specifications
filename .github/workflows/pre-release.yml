@@ -96,7 +96,7 @@ jobs:
       - name: Trigger Workflow
         run: |
           set -e
-          curl -X POST https://api.github.com/repos/Chillibean/manage-api-client-sdk/dispatches \
+          curl -X POST https://api.github.com/repos/Chillibean/sessions-api-client-sdk/dispatches \
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
           --data '{"event_type": "trigger-pre-release", "client_payload": { "version": "${{ needs.create-pre-release.outputs.version }}" }}' \
