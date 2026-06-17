@@ -83,9 +83,6 @@
       },
       "User": {
         "$ref": "refs/components/schemas/User.json"
-      },
-      "UserStatus": {
-        "$ref": "refs/components/schemas/UserStatus.json"
       }
     }
   }
